@@ -1,5 +1,9 @@
 class ListingsController < ApplicationController
+# -------------------------------------REMOVE FOR PRODUCTION------------------------------------
   skip_before_action :verify_authenticity_token
+# -------------------------------------REMOVE FOR PRODUCTION------------------------------------
+
+  before_action :authenticate_user!, except:[:index, :show]
 
   def index
   end
@@ -24,6 +28,6 @@ class ListingsController < ApplicationController
   def check_auth
   end
 
-  
+
 
 end
