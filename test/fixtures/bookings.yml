@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  listing: one
+  user_profile: one
+  address: MyString
+  date: 2022-05-16
+
+two:
+  listing: two
+  user_profile: two
+  address: MyString
+  date: 2022-05-16
