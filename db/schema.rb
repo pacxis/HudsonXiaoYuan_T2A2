@@ -39,15 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
 
   create_table "listings", force: :cascade do |t|
     t.string "name"
-    t.integer "category_id"
     t.integer "user_profile_id", null: false
     t.integer "price"
     t.text "listing_description"
-    t.integer "menu_id"
+    t.boolean "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_listings_on_category_id"
-    t.index ["menu_id"], name: "index_listings_on_menu_id"
     t.index ["user_profile_id"], name: "index_listings_on_user_profile_id"
   end
 
@@ -93,8 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
   add_foreign_key "bookings", "user_profiles"
   add_foreign_key "listing_categories", "categories"
   add_foreign_key "listing_categories", "listings"
-  add_foreign_key "listings", "categories"
-  add_foreign_key "listings", "menus"
   add_foreign_key "listings", "user_profiles"
   add_foreign_key "menu_items", "menus"
   add_foreign_key "menus", "listings"
