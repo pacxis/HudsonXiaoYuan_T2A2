@@ -42,7 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.integer "user_profile_id", null: false
     t.integer "price"
     t.text "listing_description"
-    t.boolean "visible"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_profile_id"], name: "index_listings_on_user_profile_id"

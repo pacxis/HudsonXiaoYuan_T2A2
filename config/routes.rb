@@ -9,5 +9,9 @@ Rails.application.routes.draw do
 
   resources :listings
 
+  get 'listings/:id/new_menu', to: 'menus#new', as: 'new_menu'
+  post 'listings/:id/', to: 'menus#create'
+
+
 
 end

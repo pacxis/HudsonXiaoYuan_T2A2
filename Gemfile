@@ -18,7 +18,7 @@ gem "puma", "~> 5.0"
 gem "jsbundling-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails", "~> 1.0"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -79,6 +79,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "pg", "~> 1.3", :group => :production
+gem "pg", "~> 1.3", group: :production
 
 gem "devise", "~> 4.8"

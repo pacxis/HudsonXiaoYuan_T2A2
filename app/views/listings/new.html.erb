@@ -1,24 +1,6 @@
 <h1>Create a New Listing</h1>
 
-<%= form_with(model: @listing, data: {turbo: false}, local: true) do |f| %>
-  <fieldset class="mb-2">
-    <%= f.label :title %>:
-    <br>
-    <%= f.text_field :title %>
-  </fieldset>
-  <fieldset class="mb-2">
-    <%= f.label :listing_description %>:
-    <br>
-    <%= f.text_area :listing_description %>
-  </fieldset>
-  <fieldset class="mb-2">
-    <%= f.collection_check_boxes :category_ids, @categories, :id, :name %>
-  </fieldset>
-  <fieldset class="mb-2">
-    <%= f.submit "Create Listing", class: 'btn btn-primary' %>    
-  </fieldset>
-  <fieldset>
-    <%= f.collection_select :user_profile_id, @users, :id, :name %>
-  </fieldset>
-<% end %>
+<%= render 'form' %>
+
+
 

@@ -3,5 +3,6 @@ class MenuController < ApplicationController
   skip_before_action :verify_authenticity_token
   # -------------------------------------REMOVE FOR PRODUCTION------------------------------------
 
-  
+  def new
+  end
 end

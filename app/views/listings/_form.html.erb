@@ -1,29 +1,27 @@
-<%= form_with(model: @listing, data: {turbo: false}) do |t| %>
+<%= form_with(model: @listing, data: {turbo: false}) do |f| %>
   <fieldset class="mb-2">
-    <%= t.label :title %>
-    <%= t.text_field :title %>
+    <%= f.label(:title) %>:
+    <br>
+    <%= f.text_field(:title) %>
   </fieldset>
   <fieldset class="mb-2">
-    <%= t.label :author_id %>
-    <%
-        # collection_select takes 4 params:
-        #   1. The attribute name in this model (book) to store the selected id in
-        #   2. The collection from which to build the options
-        #   3. The attribute in the collection items to use as the value of the option
-        #   4. The attribute in the collection items to use as the caption of the option
-    %>
-    <%= t.collection_select :author_id, @authors, :id, :full_name %>
+    <%= f.label :listing_description %>:
+    <br>
+    <%= f.text_area :listing_description %>
   </fieldset>
   <fieldset class="mb-2">
-    <%= t.label :cover %>
-    <%= t.file_field :cover %>
+    <%= f.label :price %>:
+    <br>
+    $ <%= f.number_field :price %> /hour
   </fieldset>
-  <% if @book.cover.attached? %>
-    <fieldset class="mb-2">
-      <%= cl_image_tag @book.cover.key, crop: 'limit', width: 350, height: 100, cloud_name: 'drupfl3sx' %>
-    </fieldset>
-  <% end %>
+  <fieldset class="mb-2">
+    <%= f.collection_check_boxes :category_ids, @categories, :id, :name %>
+  </fieldset>
   <fieldset>
-    <%= t.submit class: 'btn btn-primary' %>    
+    <%# <%= f.collection_select :user_profile_id, @users, :id, :name %> %>
   </fieldset>
+  <fieldset class="mb-2">
+    <%= f.submit class: 'btn btn-primary' %>    
+  </fieldset>
+  
 <% end %>

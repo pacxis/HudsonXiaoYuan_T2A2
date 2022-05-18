@@ -3,13 +3,18 @@ a = User.create!(email: 'a@a.com', password: 'hudson')
 b = UserProfile.create!(name: 'ben', phone_number: '33333', user: a)
 
 ch = Category.create!(name: 'Chinese')
+fr = Category.create(name: 'French')
+ind = Category.create(name: 'Indian')
+us = Category.create(name: 'American')
 
-b.listings.create!(title: "wok on wheels", price: 100, listing_description: 'Founded in 2005, blah blah blah')
+c = b.listings.create!(title: "wok on wheels", price: 100, listing_description: 'Founded in 2005, blah blah blah')
 b.listings.create!(title: "Sam's borgirs", price: 333, listing_description: 'Lorem Ipsum')
 
-menu = Menu.create!(title: 'Mains')
+menu = c.menus.create!(title: 'Mains')
 
 menu.menu_items.create!(name: 'fried rice', description: 'its fried rice')
+
+ListingCategory.create!(listing: c, category: ch)
 
 # item = MenuItem.create!(name: 'fried rice', description: 'its fried rice')
 
@@ -25,9 +30,7 @@ menu.menu_items.create!(name: 'fried rice', description: 'its fried rice')
 # a = Listing.create!(name: "wok on wheels", user: a, menu: menu)
 
 
-fr = Category.create(name: 'French')
-ind = Category.create(name: 'Indian')
-us = Category.create(name: 'American')
+
 # jp = Category.create(name: 'Japanese')
 # th = Category.create(name: 'Thai')
 # it = Category.create(name: 'Italian')
