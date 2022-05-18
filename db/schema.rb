@@ -28,15 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "listing_categories", force: :cascade do |t|
-    t.integer "category_id", null: false
-    t.integer "listing_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_listing_categories_on_category_id"
-    t.index ["listing_id"], name: "index_listing_categories_on_listing_id"
-  end
-
   create_table "listings", force: :cascade do |t|
     t.string "title"
     t.integer "user_profile_id", null: false
@@ -45,6 +36,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_profile_id"], name: "index_listings_on_user_profile_id"
+  end
+
+  create_table "listing_categories", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "listing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_listing_categories_on_category_id"
+    t.index ["listing_id"], name: "index_listing_categories_on_listing_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
