@@ -1,3 +1,16 @@
 <h1>
-  <%= @listing.name %>
+  <%= @listing.title %>
 </h1>
+<p>
+  <%= @listing.listing_description %>
+</p>
+<h2>Categories</h2>
+  <ul>
+  <% @listing.categories.collect(&:name).each do |c| %>
+    <li><%= c %></li>
+  <% end %>
+  </ul>
+
+
+
+

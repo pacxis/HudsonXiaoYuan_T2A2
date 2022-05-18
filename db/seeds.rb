@@ -4,7 +4,8 @@ b = UserProfile.create!(name: 'ben', phone_number: '33333', user: a)
 
 ch = Category.create!(name: 'Chinese')
 
-b.listings.create!(name: "wok on wheels", price: 100, listing_description: 'Founded in 2005, blah blah blah')
+b.listings.create!(title: "wok on wheels", price: 100, listing_description: 'Founded in 2005, blah blah blah')
+b.listings.create!(title: "Sam's borgirs", price: 333, listing_description: 'Lorem Ipsum')
 
 menu = Menu.create!(title: 'Mains')
 
@@ -24,9 +25,9 @@ menu.menu_items.create!(name: 'fried rice', description: 'its fried rice')
 # a = Listing.create!(name: "wok on wheels", user: a, menu: menu)
 
 
-# fr = Category.create(name: 'French')
-# ind = Category.create(name: 'Indian')
-# us = Category.create(name: 'American')
+fr = Category.create(name: 'French')
+ind = Category.create(name: 'Indian')
+us = Category.create(name: 'American')
 # jp = Category.create(name: 'Japanese')
 # th = Category.create(name: 'Thai')
 # it = Category.create(name: 'Italian')
