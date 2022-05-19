@@ -1,1 +1,15 @@
 <h1>New Menu</h1>
+
+<%= form_with(model: @menu, data: {turbo: false}) do |f| %>
+  <fieldset class="mb-2">
+    <%= f.label(:title) %>:
+    <br>
+    <%= f.text_field(:title) %>
+  </fieldset>
+  <fieldset>
+    <%# <%= f.collection_select :user_profile_id, @users, :id, :name %> %>
+  </fieldset>
+  <fieldset class="mb-2">
+    <%= f.submit class: 'btn btn-primary' %>    
+  </fieldset>
+<% end %>

@@ -6,14 +6,13 @@ class ListingsController < ApplicationController
   # before_action :authenticate_user!, except: [:index, :show]
   before_action :set_listing, only: [:show, :update, :destroy, :edit]
   before_action :set_categories, only: [:create, :new, :edit]
-  # before_action :set_user, only: [:create, :new, :edit]
+  before_action :set_menus, only: [:show]
 
   def index
-    @listing = Listing.all
+    @listing = Listing.select(:title, :id)
   end
 
   def show
-    @listing = Listing.find(params[:id])
   end
 
   def new
@@ -46,6 +45,10 @@ class ListingsController < ApplicationController
 
   def set_listing
     @listing = Listing.find(params[:id])
+  end
+
+  def set_menus
+    @menus = Listing.find(params[:id]).menus
   end
 
   def set_categories

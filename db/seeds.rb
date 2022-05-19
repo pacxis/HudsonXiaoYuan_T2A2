@@ -10,9 +10,13 @@ us = Category.create(name: 'American')
 c = b.listings.create!(title: "wok on wheels", price: 100, listing_description: 'Founded in 2005, blah blah blah')
 b.listings.create!(title: "Sam's borgirs", price: 333, listing_description: 'Lorem Ipsum')
 
-menu = c.menus.create!(title: 'Mains')
+menu1 = c.menus.create!(title: 'Mains')
+menu2 = c.menus.create!(title: 'Drinks')
 
-menu.menu_items.create!(name: 'fried rice', description: 'its fried rice')
+menu1.menu_items.create!(name: 'fried rice', description: 'its fried rice')
+menu1.menu_items.create!(name: 'chow mein', description: 'its chow mein')
+menu2.menu_items.create!(name: 'coke', description: 'blablabla')
+menu2.menu_items.create!(name: 'coffee', description: 'xxxxdddddd')
 
 ListingCategory.create!(listing: c, category: ch)
 
