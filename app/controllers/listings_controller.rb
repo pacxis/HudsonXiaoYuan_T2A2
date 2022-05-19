@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   skip_before_action :verify_authenticity_token
   # -------------------------------------REMOVE FOR PRODUCTION------------------------------------
 
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_listing, only: [:show, :update, :destroy, :edit]
   before_action :set_categories, only: [:create, :new, :edit]
   before_action :set_menus, only: [:show]
