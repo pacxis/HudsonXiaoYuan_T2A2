@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
   # -------------------------------------REMOVE FOR PRODUCTION------------------------------------
 
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_auth, except: [:index, :show]
   before_action :set_listing, only: [:show, :update, :destroy, :edit]
   before_action :set_categories, only: [:create, :new, :edit]
   before_action :set_menus, only: [:show]
@@ -20,6 +21,7 @@ class ListingsController < ApplicationController
   end
 
   def create
+    # Adds current user's profile ID to listing as attribute
     @listing = Listing.new(listing_params.merge(user_profile_id: current_user.user_profile.id))
     @listing.save!
     redirect_to @listing
@@ -31,11 +33,16 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    @listing = Listing.find(params[:id])
   end
 
   def destroy
     @listing.destroy!
     redirect_to root_path
+  end
+
+  def booking
+    
   end
 
   private
@@ -45,6 +52,7 @@ class ListingsController < ApplicationController
 
   def set_listing
     @listing = Listing.find(params[:id])
+    authorize @listing
   end
 
   def set_menus
@@ -55,7 +63,15 @@ class ListingsController < ApplicationController
     @categories = Category.order(:name)
   end
 
+  def check_auth
+    authorize Listing
+  end
+
   def listing_params
     return params.require(:listing).permit(:title, :user_profile_id, :visible, :price, :listing_description, category_ids:[])
+  end
+
+  def booking_params
+    return params.require(:booking).permit(listing)
   end
 end

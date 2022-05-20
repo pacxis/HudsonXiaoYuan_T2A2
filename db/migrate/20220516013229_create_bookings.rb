@@ -5,6 +5,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.references :user_profile, null: false, foreign_key: true
       t.string :address
       t.date :date
+      t.text :comment
 
       t.timestamps
     end

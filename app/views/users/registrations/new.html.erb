@@ -3,18 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
-  <%= f.fields_for :user_profile do |p| %>
-    <div>
-      <%= p.label :name %>
-      <br>
-      <%= p.text_field :name %>
-    </div>
-    <div>
-      <%= p.label :phone_number %>
-      <br>
-      <%= p.number_field(:phone_number) %>
-    </div>
-  <% end %>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -33,12 +22,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <%= f.fields_for :role do |p| %>
+  <%# <%= f.fields_for :role do |p| %> %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_19_112056) do
   create_table "bookings", force: :cascade do |t|
     t.integer "listing_id", null: false
     t.integer "user_profile_id", null: false
@@ -28,6 +28,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "listing_categories", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "listing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_listing_categories_on_category_id"
+    t.index ["listing_id"], name: "index_listing_categories_on_listing_id"
+  end
+
   create_table "listings", force: :cascade do |t|
     t.string "title"
     t.integer "user_profile_id", null: false
@@ -36,15 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_profile_id"], name: "index_listings_on_user_profile_id"
-  end
-
-  create_table "listing_categories", force: :cascade do |t|
-    t.integer "category_id", null: false
-    t.integer "listing_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_listing_categories_on_category_id"
-    t.index ["listing_id"], name: "index_listing_categories_on_listing_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -62,6 +62,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["listing_id"], name: "index_menus_on_listing_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -83,6 +94,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_015234) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "bookings", "listings"
