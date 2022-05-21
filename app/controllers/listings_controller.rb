@@ -10,7 +10,11 @@ class ListingsController < ApplicationController
   before_action :set_menus, only: [:show]
 
   def index
+    # Queries the database only for the title and id of all listings
     @listing = Listing.select(:title, :id)
+  end
+
+  def seller_index
   end
 
   def show
@@ -21,7 +25,8 @@ class ListingsController < ApplicationController
   end
 
   def create
-    # Adds current user's profile ID to listing as attribute
+    # Creates a new listing using strong params passed through from the creation form
+    # Adds current user's profile ID to @listing as attribute
     @listing = Listing.new(listing_params.merge(user_profile_id: current_user.user_profile.id))
     @listing.save!
     redirect_to @listing
@@ -41,18 +46,13 @@ class ListingsController < ApplicationController
     redirect_to root_path
   end
 
-  def booking
-    
+  def book
   end
 
   private
 
-  def check_auth
-  end
-
   def set_listing
     @listing = Listing.find(params[:id])
-    authorize @listing
   end
 
   def set_menus
@@ -69,9 +69,5 @@ class ListingsController < ApplicationController
 
   def listing_params
     return params.require(:listing).permit(:title, :user_profile_id, :visible, :price, :listing_description, category_ids:[])
-  end
-
-  def booking_params
-    return params.require(:booking).permit(listing)
   end
 end

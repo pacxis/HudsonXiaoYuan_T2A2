@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ListingPolicy
+class BookingPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -9,15 +9,15 @@ class ListingPolicy
   end
 
   def index?
-    true
+    return @user && @user.has_any_role?(:buyer, :admin)
   end
 
   def show?
-    true
+    return index?
   end
 
   def create?
-    return @user && @user.has_any_role?(:seller)
+    return index?
   end
 
   def new?
@@ -26,18 +26,12 @@ class ListingPolicy
 
   def update?
     return @user && @user.has_any_role?(:admin, :seller)
-  #   puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-  #   puts @user.user_profile
-  #   puts @listing
-  #   return (@user.has_any_role?(:seller, :admin) && @user.user_profile.id == @record.user_profile_id)
+
   end
 
   def edit?
     return update?
-  #   puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-  #   puts @user.user_profile.id
-  #   puts @listing
-  #   return @user.has_any_role?(:seller, :admin
+
   end
 
   def destroy?

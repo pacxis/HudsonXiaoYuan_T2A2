@@ -6,11 +6,18 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root 'listings#index'
-
   resources :listings
+  
+  get 'bookings', to: 'bookings#index', as: 'bookings'
+  get 'seller_bookings', to: 'bookings#seller_index', as: 'seller_bookings'
+  get 'listings/:id/book', to: 'bookings#new', as: 'new_booking'
+  post 'listings/:id/book', to: 'bookings#create'
+  
+
 
   get 'listings/:id/new_menu', to: 'menus#new', as: 'new_menu'
   post 'listings/:id/', to: 'menus#create'
+
 
 
 
