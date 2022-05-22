@@ -2,8 +2,8 @@ class Booking < ApplicationRecord
   belongs_to :listing
   belongs_to :user_profile
 
-  validates :address, presence: true
-  validate :future_date
+  # validates :address, presence: true
+  # validate :future_date
 
   private
   # Validates date to ensure it is not in the past
