@@ -8,8 +8,8 @@ class Listing < ApplicationRecord
   has_one_attached :truck_img
   has_one_attached :menu_img
 
-  # validates :title, :price, :listing_description, :categories, :menu_img, presence: true
-  # validates_numericality_of :price, only_integer: true
+  validates :title, :price, :listing_description, :categories, :menu_img, presence: true
+  validates_numericality_of :price, only_integer: true
   
 
 end
