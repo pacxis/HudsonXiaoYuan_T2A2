@@ -22,8 +22,24 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <%# <%= f.fields_for :role do |p| %> %>
+  <%= f.fields_for :user_profile do |u| %>
+    <div>
+      <%= u.label :name %>
+      <br>
+      <%= u.text_field :name %>
+    </div>
+    <div>
+      <%= u.label :phone_number %>
+      <br>
+      <%= u.number_field(:phone_number) %>
+    </div>
+  <% end %>
 
+  <div class="field">
+    <%= f.label "Please choose a role:" %><br />
+    <%= f.collection_radio_buttons :roles, @roles, :name, :name, { checked: @roles.first.id } %>
+  </div>
+  <br>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

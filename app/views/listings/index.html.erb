@@ -1,7 +1,17 @@
 <h1>Home</h1>
 
-<% @listing.each do |listing| %>
-  <p> <%= link_to listing.title, listing %> </p>
+<% if policy(Listing).new? %>
+  <% if @sellerlisting == [] %>
+    <h2>You currently have no listings</h2>
+  <% else %>
+    <% @sellerlisting.each do |listing| %>
+      <p> <%= link_to listing.title, listing %> </p>
+    <% end %>
+  <% end %>
+<% else %>
+  <% @listing.each do |listing| %>
+    <p> <%= link_to listing.title, listing %> </p>
+  <% end %>
 <% end %>
 
-<%= link_to 'New Listing', new_listing_path, class: "btn btn-primary" if user_signed_in? %>
+<%= link_to 'New Listing', new_listing_path, class: "btn btn-primary" if policy(Listing).new? %>

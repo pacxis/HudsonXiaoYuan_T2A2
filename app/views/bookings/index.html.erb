@@ -1,5 +1,9 @@
 <h1>My Bookings</h1>
 
-<% @booking.each do |booking| %>
-  <p> <%= link_to booking.date, bookings_path %> </p>
+<% if @booking == [] %>
+  <h2>You currently have no bookings</h2>
+<% else %>
+  <% @booking.each do |booking| %>
+    <p> <%= link_to "Booking for #{booking.listing.title} on #{booking.date.strftime("%B %d, %Y")}", booking %> </p>
+  <% end %>
 <% end %>

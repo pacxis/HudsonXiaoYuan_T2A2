@@ -1,6 +1,7 @@
 <h1>
   <%= @listing.title %>
 </h1>
+<%= cl_image_tag(@listing.truck_img.key, :width=>400, :crop=>"scale", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @listing.truck_img.attached?%>
 <h3>
   $<%= "%.2f" % @listing[:price] %>/hour
 </h3>
@@ -8,7 +9,7 @@
   <%= @listing.listing_description %>
 </p>
 <h2>Menu</h2>
-
+<%= cl_image_tag(@listing.menu_img.key, :width=>600, :crop=>"scale", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @listing.menu_img.attached?%>
 <% @menus.each do |m| %>
   <h4><%= m.title %></h4>
   <% m.menu_items.each do |i| %>
@@ -24,12 +25,22 @@
     <li><%= c %></li>
   <% end %>
 </ul>
-<%= link_to('Edit Listing Details', edit_listing_path, class: "btn btn-primary") if policy(@listing).update? %>
-<%= link_to 'Edit Menu', new_menu_path, class: "btn btn-primary" %>
+
+<%= link_to('Edit Menu', new_menu_path, class: "btn btn-primary") if policy(Listing).update? %>
+
+<%= link_to('Edit Listing Details', edit_listing_path, class: "btn btn-primary") if policy(Listing).update? %>
 <%= link_to('Book This Food Truck', new_booking_path, class: "btn btn-primary") if policy(Booking).new? %>
 <div>
-  <%= button_to 'Delete Listing', @listing, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this listing?" } } %>
+  <%= button_to('Delete Listing', @listing, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this listing?" } }) if policy(Listing).destroy? %>
 </div>
+
+<% if policy(Listing).new? %>
+  <h2>Bookings for This Listing</h2>
+  <% @listing.bookings.each do |booking|%>
+    <p>Booking by <%= booking.user_profile.name %> on <%= booking.date.strftime("%B %d, %Y") %></p>
+  <% end %>
+<% end %>
+
 
 
 

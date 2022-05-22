@@ -21,21 +21,19 @@ class BookingPolicy
   end
 
   def new?
-    create?
+    return create?
   end
 
   def update?
-    return @user && @user.has_any_role?(:admin, :seller)
-
+    return index?
   end
 
   def edit?
     return update?
-
   end
 
   def destroy?
-    return create?
+    return @user && @user.has_any_role?(:seller, :buyer)
     # return @user.has_any_role?(:admin, :seller)
   end
 

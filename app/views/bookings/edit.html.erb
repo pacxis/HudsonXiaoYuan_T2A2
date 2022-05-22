@@ -1,4 +1,6 @@
-<%= form_with(model: @booking, url: new_booking_path, data: {turbo: false}) do |f| %>
+<h1>Edit Booking for <%= @booking.listing.title %></h1>
+
+<%= form_with(model: @booking, url: edit_booking_path, data: {turbo: false}) do |f| %>
   <fieldset class="mb-2">
     <%= f.label(:address) %>:
     <br>
