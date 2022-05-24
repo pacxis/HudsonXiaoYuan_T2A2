@@ -1,5 +1,6 @@
 class UserProfile < ApplicationRecord
   has_many :listings
+  has_many :bookings
   belongs_to :user
 
   validates :name, :phone_number, presence: true

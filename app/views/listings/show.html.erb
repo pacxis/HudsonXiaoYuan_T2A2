@@ -1,7 +1,7 @@
 <h1>
   <%= @listing.title %>
 </h1>
-<%= cl_image_tag(@listing.truck_img.key, :width=>400, :crop=>"scale", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @listing.truck_img.attached?%>
+<%= cl_image_tag(@listing.truck_img.key, :width=>600, :crop=>"scale", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @listing.truck_img.attached?%>
 <h3>
   $<%= "%.2f" % @listing[:price] %>/hour
 </h3>
@@ -9,7 +9,7 @@
   <%= @listing.listing_description %>
 </p>
 <h2>Menu</h2>
-<%= cl_image_tag(@listing.menu_img.key, :width=>600, :crop=>"scale", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @listing.menu_img.attached?%>
+<%= cl_image_tag(@listing.menu_img.key, :width=>400, :crop=>"scale", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @listing.menu_img.attached?%>
 <% @menus.each do |m| %>
   <h4><%= m.title %></h4>
   <% m.menu_items.each do |i| %>
