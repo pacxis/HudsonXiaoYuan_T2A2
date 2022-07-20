@@ -4,7 +4,7 @@
 The popularity of food trucks has increased rapidly over the past several year, outpacing the growth of the restaurant industry. They attract customers by serving areas with high foot traffic but also do business through catering for events as their flexibility with location makes them uniquely suited to this task. Therefore, customers looking for to have their events catered for need a reliable and centralised location to browse for local food trucks. Currently, there is a Brisbane City council website which lists Brisbane food trucks, but it merely contains a short description and contact information, with some listings containing no information at all. Thus, a reliable platform does not currently exist.
 
 ## The Solution
-I have created a two-way marketplace called Brisbane Food Truck Catering to solve the above problem. It connects Brisbane food truck owners with customers by allowing owners to create listings for their food trucks, which customers may book for a certain date and location. The customer pays through the site and we take a small percentage as a service fee. When users sign up, they can either choose to be a buyer or a seller. **It is currently a work in progress.**
+I have created a two-way marketplace called Brisbane Food Truck Catering to solve the above problem. It connects Brisbane food truck owners with customers by allowing owners to create listings for their food trucks, which customers may book for a certain date and location. The customer pays through the site and we take a small percentage as a service fee. When users sign up, they can either choose to be a buyer or a seller. <ins>**It is currently a work in progress.**</ins>
 
 ## Features
 
